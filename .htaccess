@@ -1,0 +1,29 @@
+# Enable mod_rewrite
+RewriteEngine On
+RewriteBase /supermarket/
+
+# Block direct access to protected directories
+RewriteRule ^config/ - [F,L]
+RewriteRule ^core/ - [F,L]
+RewriteRule ^models/ - [F,L]
+RewriteRule ^controllers/ - [F,L]
+RewriteRule ^migrations/ - [F,L]
+RewriteRule ^scripts/ - [F,L]
+
+# Block PHP execution in uploads directory
+RewriteRule ^public/uploads/.*\.php$ - [F,L]
+
+# If the requested file or directory exists, serve it directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Route all other requests to index.php
+RewriteRule ^(.*)$ index.php [QSA,L]
+
+# Prevent directory listing
+Options -Indexes
+
+# Deny access to hidden files
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
