@@ -2,7 +2,8 @@
     "name": "supermarket/app",
     "description": "SuperMarket Management System",
     "require": {
-        "php": ">=8.0",
-        "stripe/stripe-php": "^13.0"
+        "php": ">=8.2",
+        "stripe/stripe-php": "^13.0",
+        "ext-pdo_mysql": "*"
     }
 }
